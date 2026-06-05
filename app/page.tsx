@@ -7,7 +7,7 @@ const THEME_KEY = "traffic-counter-theme";
 const features = [
   {
     title: "Smart timestamps",
-    desc: "Setiap tap terekam dengan presisi waktu yang tepat. Laporan otomatis terbagi ke dalam interval 15 menit.",
+    desc: "Setiap tap terekam dengan presisi waktu yang tepat. Laporan otomatis terbagi per interval dan bisa memakai label jam aktual atau menit survei.",
   },
   {
     title: "Kustomisasi cepat",
@@ -19,7 +19,7 @@ const features = [
   },
   {
     title: "Ekspor CSV",
-    desc: "Format file siap diolah di Excel atau dibagikan dengan mudah lewat email dan WhatsApp.",
+    desc: "Format file siap diolah di Excel, lengkap dengan mode kolom interval berbasis timestamp atau menit relatif survei.",
   },
   {
     title: "Layar tetap aktif",
@@ -60,7 +60,7 @@ const modules = [
   {
     id: "6",
     title: "Pengaturan",
-    desc: "Interval waktu dan kustomisasi antarmuka.",
+    desc: "Interval CSV, label kolom, dan kustomisasi antarmuka.",
   },
 ];
 
@@ -224,11 +224,12 @@ const moduleContents: Record<string, React.ReactNode> = {
         <p className="mt-2 text-sm text-[var(--muted)]">Kustomisasi Preferensi & Output Laporan</p>
       </div>
       <p className="text-base leading-relaxed text-[var(--muted)]">
-        Modul pengaturan memungkinkan surveyor untuk menyesuaikan antarmuka dan mengekspor data yang direkam di lapangan.
+        Modul pengaturan memungkinkan surveyor untuk menyesuaikan antarmuka, mengatur interval rekap, memilih format label kolom CSV, dan mengekspor data yang direkam di lapangan.
       </p>
       <ul className="mt-4 list-disc space-y-4 pl-5 text-sm text-[var(--muted)]">
         <li><strong>Interval Waktu Data:</strong> Kustomisasi pemecahan rekap data otomatis (misal: dirangkum per 15 menit atau 60 menit).</li>
-        <li><strong>Ekspor CSV:</strong> Semua data terstruktur (termasuk timestamp per kendaraan) siap diunduh dan dibagikan.</li>
+        <li><strong>Label Kolom Interval:</strong> Pilih <em>Jam Aktual</em> untuk kolom seperti 08:00 - 08:15, atau <em>Menit Survei</em> untuk kolom seperti Menit 0-15 dan Menit 15-30.</li>
+        <li><strong>Ekspor CSV:</strong> Semua data terstruktur siap diunduh dan dibagikan, dengan hitungan interval tetap berbasis timestamp asli agar rekap tetap akurat.</li>
         <li><strong>Mode Tampilan:</strong> Penyesuaian ukuran tombol dan kontras layar (High-Contrast/Dark Mode) untuk di bawah terik matahari.</li>
         <li><strong>Backup Lokal:</strong> Sistem memastikan riwayat survei tidak hilang walau layar ponsel terkunci atau aplikasi dimatikan.</li>
       </ul>
@@ -355,7 +356,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-6 rounded-2xl bg-[var(--surface-alt)] px-5 py-4 text-center text-sm font-medium text-[var(--muted)]">
-                Interval pencatatan aktif: <strong className="text-[var(--text)]">15 Menit</strong>
+                Interval CSV aktif: <strong className="text-[var(--text)]">15 Menit</strong> · Label: <strong className="text-[var(--text)]">Jam Aktual / Menit Survei</strong>
               </div>
             </div>
           </div>
